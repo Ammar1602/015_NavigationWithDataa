@@ -32,7 +32,7 @@ import com.example.prak63.ui.theme.Prak63Theme
 fun HalamanHome(
     onNextButtonClicked: () -> Unit)
 {
-    val image = painterResource(id = R.drawable.img)
+    val image = painterResource(id = R.drawable.img_lychetea)
     Column(modifier = Modifier,
         verticalArrangement = Arrangement.SpaceBetween) {
         OutlinedCard(
@@ -60,12 +60,9 @@ fun HalamanHome(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally))
                 Text(
-                    text = "Gembrung",
+                    text = "LycheeTea",
                     color = Color.DarkGray,
-                    fontFamily = FontFamily.Cursive,
-                    fontStyle = FontStyle.Italic,
-                    fontSize = 60.sp,
-                    fontWeight = FontWeight.Bold)
+                    fontFamily = FontFamily.Cursive
 
             }
         }
