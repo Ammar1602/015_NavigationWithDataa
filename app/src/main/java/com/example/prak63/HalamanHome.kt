@@ -1,12 +1,10 @@
-package com.example.prak63
+package com.example.navigate
 
-import android.graphics.fonts.FontFamily
-import android.graphics.fonts.FontStyle
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -22,71 +20,74 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.prak63.ui.theme.Prak63Theme
+import com.example.prak63.R
+
 
 @Composable
 fun HalamanHome(
-    onNextButtonClicked: () -> Unit)
-{
+    onNextButtonClicked: () -> Unit
+) {
     val image = painterResource(id = R.drawable.img_lychetea)
-    Column(modifier = Modifier,
-        verticalArrangement = Arrangement.SpaceBetween) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
         OutlinedCard(
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface,
             ),
-            border = BorderStroke(1.dp, Color.Black), modifier = Modifier
+            border = BorderStroke(1.dp, Color.Black),
+            modifier = Modifier
                 .fillMaxWidth(0.95f)
                 .padding(vertical = 50.dp)
                 .align(Alignment.CenterHorizontally)
-        ){
-            Column(horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
                     painter = image,
                     contentDescription = null,
-                    contentScale = ContentScale.Crop)
+                    contentScale = ContentScale.Crop
+                )
                 Text(
                     text = "Es Teh",
                     color = Color.DarkGray,
                     fontFamily = FontFamily.Cursive,
                     fontSize = 35.sp,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally))
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
                 Text(
-                    text = "LycheeTea",
+                    text = "Minum brok?",
                     color = Color.DarkGray,
-                    fontFamily = FontFamily.Cursive
-
+                    fontFamily = FontFamily.Cursive,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
-        Row(
+        Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(R.dimen.padding_medium))
-                .weight(1f, false),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
-            verticalAlignment = Alignment.Bottom
-        ){
-            Button(
-                modifier = Modifier.weight(1f),
-                onClick = onNextButtonClicked
-            ) {
-                Text(stringResource(R.string.next))
-            }
+                .padding(dimensionResource(R.dimen.padding_medium)),
+            onClick = onNextButtonClicked
+        ) {
+            Text(stringResource(R.string.next))
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewHalamanHome() {
-    Prak63Theme {
+    MaterialTheme {
         HalamanHome(onNextButtonClicked = {})
     }
 }
