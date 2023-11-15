@@ -94,11 +94,9 @@ fun EsJumboApp(
             }
             composable(PengelolaHalaman.Formulir.name){
                 HalamanSatu(
-                    pilihanRasa = ,
-                    onSelectionChanged = ,
-                    onConfirmButtonClicked = ,
-                    onNextButtonClicked = { /*TODO*/ },
-                    onCancelButtonClicked = { /*TODO*/ })
+                    onSubmitButtonClicked = {
+
+                    }
             }
 
 
