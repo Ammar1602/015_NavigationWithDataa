@@ -26,7 +26,7 @@ class OrderViewModel : ViewModel() {
     fun resetOrder(){
         _stateUI.value = OrderUIState()
     }
-    fun setContact(){
+    fun setContact(strings: MutableList<String>) {
         _stateUI.value = OrderUIState()
     }
     private fun hitungHarga(
