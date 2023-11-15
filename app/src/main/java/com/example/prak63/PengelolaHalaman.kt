@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.navigate
 
 import androidx.compose.foundation.layout.padding
@@ -30,6 +32,7 @@ import com.example.prak63.data.SumberData
 
 
 enum class PengelolaHalaman {
+    Formulir,
     Home,
     Rasa,
     Summary
@@ -81,13 +84,24 @@ fun EsJumboApp(
             navController = navController as NavHostController,
             startDestination = PengelolaHalaman.Home.name,
             modifier = Modifier.padding(innerPadding)
-        )
-        {
+        ){
             composable(route = PengelolaHalaman.Home.name){
                 HalamanHome (
                     onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Rasa.name)})
+                        navController.navigate(PengelolaHalaman.Formulir.name)
+                    }
+                )
             }
+            composable(PengelolaHalaman.Formulir.name){
+                HalamanSatu(
+                    pilihanRasa = ,
+                    onSelectionChanged = ,
+                    onConfirmButtonClicked = ,
+                    onNextButtonClicked = { /*TODO*/ },
+                    onCancelButtonClicked = { /*TODO*/ })
+            }
+
+
             composable(route = PengelolaHalaman.Rasa.name){
                 val context = LocalContext.current
                 HalamanSatu(
