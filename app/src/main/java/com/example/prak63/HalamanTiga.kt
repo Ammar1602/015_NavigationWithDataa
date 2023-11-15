@@ -3,7 +3,6 @@ package com.example.prak63
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScopeInstance.weight
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,32 +27,32 @@ fun HalamanTiga(
     orderUIState: OrderUIState
 ){
     val items = listOf(
-        Pair(stringResource(id = R.string.nama), orderUIState.nama),
-        Pair(stringResource(id = R.string.nomorhp), orderUIState.noTelp),
-        Pair(stringResource(id = R.string.alamat), orderUIState.alamat),
-        Pair(stringResource(id = R.string.quantity), orderUIState.jumlah),
-        Pair(stringResource(id = R.string.flavor), orderUIState.rasa),
+        Pair(stringResource(R.string.nama), orderUIState.nama),
+        Pair(stringResource(R.string.nomorhp), orderUIState.noTelp),
+        Pair(stringResource(R.string.alamat), orderUIState.alamat),
+        Pair(stringResource(R.string.quantity), orderUIState.jumlah),
+        Pair(stringResource(R.string.flavor),orderUIState.rasa)
     )
     Column(
-        modifier = Modifier,
+        modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            items.forEach{ items ->
+            modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+        ){
+            items.forEach { item ->
                 Column {
-                    Text(text = items.second.toString(),
+                    Text(item.first.uppercase())
+                    Text(text = item.second.toString(),
                         fontWeight = FontWeight.Bold)
                 }
                 Divider(
-                    thickness = dimensionResource(id = R.dimen.thicknes_divider)
-                )
+                    thickness = dimensionResource(R.dimen.thicknes_divider))
             }
             Spacer(
                 modifier = Modifier
-                    .height(dimensionResource(id = R.dimen.padding_small)))
+                    .height(dimensionResource(R.dimen.padding_small)))
             FormatLabelHarga(subtotal = orderUIState.harga,
                 modifier = Modifier.align(Alignment.End)
             )
@@ -61,13 +60,14 @@ fun HalamanTiga(
         Row(
             modifier = Modifier
                 .weight(1f, false)
-                .padding(dimensionResource(id = R.dimen.padding_medium))
+                .padding(dimensionResource(R.dimen.padding_medium))
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
+                verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
             ) {
                 Button(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     onClick = {}
                 ) {
                     Text(stringResource(R.string.send))
@@ -79,6 +79,7 @@ fun HalamanTiga(
                     Text(stringResource(R.string.cancel))
                 }
             }
+
         }
     }
 }

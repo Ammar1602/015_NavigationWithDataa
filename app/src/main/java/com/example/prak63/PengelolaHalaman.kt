@@ -27,8 +27,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pengelolahalaman.OrderViewModel
 import com.example.prak63.HalamanDua
 import com.example.prak63.HalamanSatu
+import com.example.prak63.HalamanTiga
 import com.example.prak63.R
-import com.example.prak63.data.SumberData
+import com.example.prak63.data.SumberData.flavors
 
 
 enum class PengelolaHalaman {
@@ -109,16 +110,36 @@ fun EsJumboApp(
 
             composable(route = PengelolaHalaman.Rasa.name){
                 val context = LocalContext.current
+                HalamanDua(
+                    pilihanRasa = flavors.map { id -> context.resources.getString(id) },
+                    onSelectionChanged = { viewModel.setRasa(it) },
+                    onConfirmButtonClicked = { viewModel.setJumlah(it) },
+                    onNextButtonClicked = { navController.navigate(PengelolaHalaman.Summary.name) },
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToFormulir(
+                            viewModel,
+                            navController
+                        )
+                    })
 
             }
             composable(route = PengelolaHalaman.Summary.name) {
-
+                HalamanTiga(
+                    orderUIState = uiState,
+                    onCancelButtonClicked = { cancelOrderAndNavigateToRasa(navController) })
             }
         }
     }
 }
 
 
+private fun cancelOrderAndNavigateToFormulir(
+    viewModel: OrderViewModel,
+    navController: NavHostController
+) {
+    viewModel.resetOrder()
+    navController.popBackStack(PengelolaHalaman.Formulir.name, inclusive = false)
+}
 private fun cancelOrderAndNavigateToHome (
     viewModel: OrderViewModel,
     navController: NavController
