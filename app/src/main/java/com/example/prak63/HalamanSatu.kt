@@ -69,6 +69,23 @@ fun HalamanSatu(
                 .padding(15.dp))
         Spacer(modifier = Modifier.padding(2.dp))
 
-
+        Row(modifier = Modifier
+            .padding(dimensionResource(id = R.dimen.padding_medium))
+            .weight(1f, false), horizontalArrangement = Arrangement.spacedBy(
+            dimensionResource(id = R.dimen.padding_medium)),
+            verticalAlignment = Alignment.Bottom) {
+            OutlinedButton(
+                modifier = Modifier,
+                onClick = onCancelButtonClicked
+            ) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+            Spacer(modifier = Modifier.padding(16.dp))
+            OutlinedButton(
+                modifier = Modifier,
+                onClick = { onSubmitButtonClicked(listData) }) {
+                Text(text = stringResource(id = R.string.btn_submit))
+            }
+        }
     }
 }
